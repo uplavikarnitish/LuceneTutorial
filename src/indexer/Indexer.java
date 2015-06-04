@@ -8,5 +8,14 @@ public class Indexer {
         {
             throw new Exception("Usage Java "+ Indexer.class.getName()+"<index dir> <data dir>");
         }
+        String indexDir = args[0];
+        String dataDir = args[1];
+
+        long start = System.currentTimeMillis();
+        Indexer indexer = new Indexer(indexDir);
+        int numIndexed = indexer.index(dataDir);
+        indexer.close();
+        long end = System.currentTimeMillis();
+        System.out.println("Indexing "+numIndexed+" files took "+(end-start)+" milliseconds.");
     }
 }
